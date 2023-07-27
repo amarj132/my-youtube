@@ -9,18 +9,13 @@ const list = [
   "Soccer",
   "Cricket",
   "Cooking",
-  "Valentines",
-  "Soccer",
-  "Cricket",
-  "Cooking",
-  "Valentines",
 ];
 
 const ButtonList = () => {
   return (
     <div className="flex">
-      {list.map((lists) => (
-        <Button name={lists} />
+      {list.map((lists) =>   ( 
+        <Button key={lists} name={lists} />
       ))}
     </div>
 
