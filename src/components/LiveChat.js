@@ -14,14 +14,13 @@ const LiveChat = () => {
   useEffect(() => {
     const i = setInterval(() => {
       //API poling
-      console.log("API Poling");
       dispatch(
         addMessage({
           name: generateRandomName(),
           message: makeRandomMessage(20),
         })
       );
-    }, 500);
+    }, 1500);
 
     return () => clearInterval(i);
   }, []);
@@ -35,15 +34,28 @@ const LiveChat = () => {
           ))}
         </div>
       </div>
-      <div className="w-full p-2 ml-2 border border-black">
+      <form
+        className="w-full p-2 ml-2 border border-black"
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("on form submit", liveMessage);
+          dispatch(
+            addMessage({
+              name: "Amar Jadhav",
+              message: liveMessage ,
+            })
+          );
+          setLiveMessage("")
+        }}
+      >
         <input
-          className="w-80"
+          className=" px-2 w-80"
           type="text"
           value={liveMessage}
           onChange={(e) => setLiveMessage(e.target.value)}
         />
         <button className="px-2 mx-2 bg-green-100">Send</button>
-      </div>
+      </form>
     </>
   );
 };
